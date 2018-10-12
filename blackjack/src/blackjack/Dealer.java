@@ -2,11 +2,9 @@ package blackjack;
 
 import java.util.ArrayList;
 
-public class Dealer {
+public class Dealer extends DeckCreator {
 
 	private ArrayList<Integer> deck;
-	public final static int SUITS = 4;
-	public final int DECK_SIZE = 52;
 	public final int STARTING_CARDS = 2;
 	private int originalDeckSize;
 	private int dealerWins;
@@ -27,26 +25,10 @@ public class Dealer {
 		this.playerWins = 0;
 	}
 
-	public void createDeck(int decks) {
+	public void createDealerDeck(int decks) {
 
-		for (int i = 0; i < decks * SUITS; i++) {
-
-			deck.add(2);
-			deck.add(3);
-			deck.add(4);
-			deck.add(5);
-			deck.add(6);
-			deck.add(7);
-			deck.add(8);
-			deck.add(9);
-			deck.add(10);
-			// jack, king, and queen have same value
-			for (int x = 0; x < 3; x++) {
-
-				deck.add(10);
-			}
-			deck.add(11);
-		}
+		this.deck = super.createDeck(decks);
+		
 		this.originalDeckSize = deck.size();
 		player.createDeck(decks);
 	}
