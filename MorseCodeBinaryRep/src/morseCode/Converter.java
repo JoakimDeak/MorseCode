@@ -119,14 +119,47 @@ public class Converter {
 		String outputString = "";
 		
 		while(sc.hasNext()) {
-			
 			String thisLine = sc.nextLine();
+			int counter = 0; // counts number of 0s in a row
+			int endOfLastWord = 0;
 			
 			for(int i = 0; i < thisLine.length(); i++) {
 				
+				char currentChar = thisLine.charAt(i);
 				
+				String currentWord = "";
+				
+				if(currentChar == '0') {
+					
+					counter++;
+				} else {
+					
+					counter = 0;
+				}
+				
+				if(counter == 3) { // end of character
+					
+					currentWord = thisLine.substring(endOfLastWord, i + 1);
+					if(currentWord.contains("1")) {
+						
+						outputString += convertFrom(currentWord);
+						endOfLastWord = i + 1;
+					}
+				}
+				
+				if(counter == 7) { // end of word
+					
+					currentWord = thisLine.substring(endOfLastWord, i + 1);
+					if(!currentWord.contains("1")) {
+						
+						outputString += convertFrom(currentWord);
+						endOfLastWord = i + 1;
+					}
+				}
 			}
 		}
+		
+		writer.write(outputString);
 		
 		sc.close();
 		writer.close();

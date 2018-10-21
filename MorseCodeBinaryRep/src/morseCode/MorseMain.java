@@ -15,7 +15,8 @@ public class MorseMain {
 		converter.initAlphabet();
 		try {
 			
-			converter.convertFileTo("HelloWorld.txt", "HelloWorldInMorseCode");
+			converter.convertFileTo("shortTest.txt", "shortTestMorse");
+			converter.convertFileFrom("shortTestMorse.txt", "shortTestBackToNormal");
 		} catch (IOException e) {
 			
 			System.out.println("File not found");
