@@ -156,6 +156,8 @@ public class Converter {
 						endOfLastWord = i + 1;
 					}
 				}
+				
+				counter = 3; // adds end of character to spaces, needed for multiple spaces
 			}
 		}
 		
