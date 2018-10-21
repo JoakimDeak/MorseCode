@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 public class Converter {
 
-	private String[] alphabet;
+	private String[] morseAlphabet;
 
 	public Converter() {
 
-		this.alphabet = new String[37];
+		this.morseAlphabet = new String[37];
 	}
 
 	public void initAlphabet() {
@@ -22,9 +22,9 @@ public class Converter {
 
 			Scanner sc = new Scanner(new File("morseAlphabet.txt"));
 
-			for (int i = 0; i < alphabet.length; i++) {
+			for (int i = 0; i < morseAlphabet.length; i++) {
 
-				this.alphabet[i] = sc.nextLine();
+				this.morseAlphabet[i] = sc.nextLine();
 			}
 			sc.close();
 		} catch (IOException e) {
@@ -54,11 +54,11 @@ public class Converter {
 		switch (group) {
 
 		case "space":
-			return alphabet[26];
+			return morseAlphabet[26];
 		case "digits":
-			return alphabet[letterInt - 21];
+			return morseAlphabet[letterInt - 21];
 		case "letters":
-			return alphabet[letterInt - 65];
+			return morseAlphabet[letterInt - 65];
 		default: // symbols without morse code representation
 			return "";
 		}
@@ -85,6 +85,23 @@ public class Converter {
 		}
 		
 		writer.write(outputString);
+		
+		sc.close();
+		writer.close();
+	}
+	
+	public void convertFileFrom(String inputFilename, String outputFilename) throws IOException {
+		
+		Scanner sc = new Scanner(new  FileReader(new File(inputFilename)));
+		outputFilename += ".txt";
+		BufferedWriter writer = new BufferedWriter(new FileWriter(new File(outputFilename)));
+		
+		String outputString = "";
+		
+		while(sc.hasNext()) {
+			
+			
+		}
 		
 		sc.close();
 		writer.close();
