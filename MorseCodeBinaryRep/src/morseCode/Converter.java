@@ -64,7 +64,7 @@ public class Converter {
 		}
 	}
 	
-	public void convertFile(String inputFilename, String outputFilename) throws IOException {
+	public void convertFileTo(String inputFilename, String outputFilename) throws IOException {
 		
 		Scanner sc = new Scanner(new FileReader(new File(inputFilename)));
 		outputFilename += ".txt";

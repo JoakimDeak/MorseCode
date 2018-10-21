@@ -15,7 +15,7 @@ public class MorseMain {
 		converter.initAlphabet();
 		try {
 			
-			converter.convertFile("HelloWorld.txt", "HelloWorldInMorseCode");
+			converter.convertFileTo("HelloWorld.txt", "HelloWorldInMorseCode");
 		} catch (IOException e) {
 			
 			System.out.println("File not found");
