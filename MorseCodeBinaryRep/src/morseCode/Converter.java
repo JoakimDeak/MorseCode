@@ -10,21 +10,28 @@ import java.util.Scanner;
 public class Converter {
 
 	private String[] morseAlphabet;
+	private String[] normalAlphabet;
 
 	public Converter() {
 
 		this.morseAlphabet = new String[37];
+		this.normalAlphabet = new String[37];
 	}
 
 	public void initAlphabet() {
 
 		try {
 
-			Scanner sc = new Scanner(new File("morseAlphabet.txt"));
+			Scanner sc = new Scanner(new File("alphabet.txt"));
 
 			for (int i = 0; i < morseAlphabet.length; i++) {
 
 				this.morseAlphabet[i] = sc.nextLine();
+			}
+			
+			for(int i = 0; i < normalAlphabet.length; i++) {
+				
+				this.normalAlphabet[i] = sc.nextLine();
 			}
 			sc.close();
 		} catch (IOException e) {
@@ -33,7 +40,7 @@ public class Converter {
 		}
 	}
 
-	public String convert(char letter) {
+	public String convertTo(char letter) {
 
 		letter = Character.toUpperCase(letter);
 		String group = "";
@@ -64,6 +71,19 @@ public class Converter {
 		}
 	}
 	
+	public String convertFrom(String morseLetter) {
+		
+		for(int i = 0; i < morseAlphabet.length; i++) {
+			
+			if(morseLetter.equals(morseAlphabet[i])) {
+				
+				return normalAlphabet[i];
+			}
+		}
+		
+		return ""; // practically unreachable, only there to prevent compilation error
+	}
+	
 	public void convertFileTo(String inputFilename, String outputFilename) throws IOException {
 		
 		Scanner sc = new Scanner(new FileReader(new File(inputFilename)));
@@ -80,7 +100,7 @@ public class Converter {
 				
 				char currentChar = thisLine.charAt(i);
 				
-				outputString += convert(currentChar);
+				outputString += convertTo(currentChar);
 			}
 		}
 		
@@ -100,7 +120,12 @@ public class Converter {
 		
 		while(sc.hasNext()) {
 			
+			String thisLine = sc.nextLine();
 			
+			for(int i = 0; i < thisLine.length(); i++) {
+				
+				
+			}
 		}
 		
 		sc.close();
